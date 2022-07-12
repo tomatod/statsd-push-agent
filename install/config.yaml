@@ -1,0 +1,47 @@
+# push destination server configuration
+server:
+
+  # push destination server address (require)
+  address: "localhost:8125"
+
+  # top prefix of statsd metric
+  prefix: "count"
+
+  # push statsd metrics period (require)
+  period: 10
+
+# statsd-push-agent log configuration
+logging:
+
+  # statsd-push-agent log level (require)
+  level: "warn"
+
+  # information log output destination. You can also use stderr, stdout.
+  outputPaths:
+    - "/opt/statsd-push-agent/statsd-push-agent.log"
+  
+  # error log output destination. You can also use stderr, stdout.
+  errorOutputPaths:
+    - "/opt/statsd-push-agent/statsd-push-agent.log"
+    - "stderr"
+
+# pushed statsd metrics configure. The following is sample.
+metrics:
+  
+  # statsd metric name
+  - name: "sample"
+
+    # method to get data for metric. You can specify cmd (run command) or file (read file).
+    method: "cmd"
+
+    # target of method. You can specify command line (method: type) ofr file path (method: file).
+    param: "echo 1"
+
+    # statsd metric type. Please follow the specification of your statsd server application.
+    type: "c"
+
+    # some statsd metric type can be specified rate to. Please follow the specification.
+    rate: 0.5
+
+    # You can do a simple operation to real data. In this sample, 1 + 5 = 6 without rate.
+    blend: +5

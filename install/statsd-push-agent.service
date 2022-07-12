@@ -1,0 +1,10 @@
+[Unit]
+Description = statsd-push-agent daemon
+
+[Service]
+ExecStart=/opt/statsd-push-agent/statsd-push-agent -c /opt/statsd-push-agent/config.yaml
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

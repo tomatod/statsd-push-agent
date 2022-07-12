@@ -1,0 +1,20 @@
+server:
+  address: "127.0.0.1:8125"
+  prefix: "statsd"
+  period: 5
+
+# skip marshaling logger to zap.Config 
+
+metrics:
+  - name: "hoge"
+    method: "cmd"
+    param: "echo 1"
+    type: "s"
+    rate: 1
+  - name: "bar"
+    method: "file"
+    param: "/proc/sys/vm/overcommit_ratio"
+    operator: "+"
+    type: "g"
+    rate: 0.5
+    blend: "/10"
